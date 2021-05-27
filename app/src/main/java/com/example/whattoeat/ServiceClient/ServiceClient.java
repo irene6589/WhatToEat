@@ -4,6 +4,7 @@ import com.example.whattoeat.MealPlanWeek.MealPlanWeek;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface ServiceClient {
 
@@ -13,5 +14,10 @@ public interface ServiceClient {
     @GET("mealplanner/generate")
     Call<MealPlanWeek> getMealPlanWeek();
 
+
+
+    //Parte de Ismael, llamada para obtener informacion de una receta en funcion de la id
+    @GET("recipes/{id}/information")
+    Call<Recipes> getRecipeById(@Path("id") int id);
 
 }
