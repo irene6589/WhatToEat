@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.whattoeat.R;
+import com.example.whattoeat.RecetaInfo.Recipes;
+import com.example.whattoeat.RecetaInfo.ExtendedIngredient;
 
 public class RecipePreparationFragment extends Fragment {
 
@@ -47,18 +49,19 @@ public class RecipePreparationFragment extends Fragment {
             String allIngredients = "";
 //            TODO poner clave
             Recipes recipe = bundle.getParcelable("");
-            for (int i = 0; i < recipe.getExtendedIngredients().length; i++){
+            for (int i = 0; i < recipe.getExtendedIngredients().size(); i++){
 //                TODO poner un salto de linea donde pone salto de linea
-                allIngredients = allIngredients +"salto de linea"+ recipe.getExtendedIngredients().getName();
+                allIngredients = allIngredients +"salto de linea"+ recipe.getExtendedIngredients().get(i).getName();
             }
 
 
 //            hacer un array para poner todos los pasos en un string
             String allSteps = "";
-            for(int i = 0; i < recipe.getAnalyzedInstructions().getSteps().getStep().length; i++){
-                //                TODO poner un salto de linea donde pone salto de linea
-                allSteps = allSteps + "salto de linea" + recipe.getAnalyzedInstructions().getSteps().getStep();
-            }
+//            for(int i = 0; i < recipe.getAnalyzedInstructions().getSteps().getStep().length; i++){
+//                //                TODO poner un salto de linea donde pone salto de linea
+//                allSteps = allSteps + "salto de linea" + recipe.getAnalyzedInstructions().getSteps().get(i).getStep();
+//            }
+            allSteps = recipe.getInstructions();
 
             ingredientsTV.setText(allIngredients);
             instructionsTV.setText(allSteps);

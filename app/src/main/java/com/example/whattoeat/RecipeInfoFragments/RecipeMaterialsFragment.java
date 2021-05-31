@@ -11,6 +11,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.whattoeat.R;
+import com.example.whattoeat.RecetaInfo.Recipes;
+
+import static android.os.Build.VERSION_CODES.O;
 
 public class RecipeMaterialsFragment extends Fragment {
 
@@ -46,14 +49,14 @@ public class RecipeMaterialsFragment extends Fragment {
 //            hacer un string con los equipment que necesita la receta
             String equipamiento = "";
 //          bucle for anidado para obtener todos los equipamientos necesarios
-            for(int i = 0; i < recipes.getAnalyzedInstructions().length; i++){
+            for(int i = 0; i < recipes.getAnalyzedInstructions().size(); i++){
 
 //                equipomiento = equipomiento + recipes.getAnalyzedInstructions().getSteps().getEquipment();
-                for(int o = 0; o < recipes.getAnalyzedInstructions().getSteps(); o++){
+                for(int j = 0; j < recipes.getAnalyzedInstructions().get(i).getSteps().size(); j++){
 
-                    for(int u = 0; u < recipes.getAnalyzedInstructions().getSteps().getEquipment(); u++){
+                    for(int u = 0; u < recipes.getAnalyzedInstructions().get(i).getSteps().get(j).getEquipment().size(); u++){
 //                        TODO poner un salto de linea donde pone salto de linea
-                        equipamiento = equipamiento + " salto de linea " + recipes.getAnalyzedInstructions(i).getSteps(o).getEquipment(u);
+                        equipamiento = equipamiento + " salto de linea " + recipes.getAnalyzedInstructions().get(i).getSteps().get(j).getEquipment().get(u);
                     }
                 }
 

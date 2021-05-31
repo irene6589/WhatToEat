@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.whattoeat.R;
+import com.example.whattoeat.RecetaInfo.Recipes;
 
 public class RecipeInfoFragment extends Fragment {
     /*

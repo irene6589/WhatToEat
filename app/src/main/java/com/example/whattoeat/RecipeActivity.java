@@ -8,7 +8,15 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.whattoeat.RecetaInfo.Comidas;
+import com.example.whattoeat.RecetaInfo.Recipes;
+import com.example.whattoeat.RecipeInfoFragments.RecipeInfoFragment;
+import com.example.whattoeat.RecipeInfoFragments.RecipeMaterialsFragment;
+import com.example.whattoeat.RecipeInfoFragments.RecipePreparationFragment;
 import com.example.whattoeat.ServiceClient.ServiceClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -48,16 +56,65 @@ public class RecipeActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 //        TODO sustituir la key del bundle por la que ponga Irene
         if(bundle != null && bundle.containsKey("")){
-//            TODO sustituir la key de la id por la que ponga Irene
+////            TODO sustituir la key de la id por la que ponga Irene
             recipeId = bundle.getInt("");
         }else {
-//            ponemos una id de una receta de la api como ejemplo
+////            ponemos una id de una receta de la api como ejemplo
             recipeId = 660447;
         }
+        setView();
+        initRetrofit();
+        loadPetition();
 
+//        TODO el tabSelectedListener peta por:
+//         Caused by: java.lang.NullPointerException: Attempt to invoke virtual method 'void com.google.android.material.tabs.TabLayout.addOnTabSelectedListener(com.google.android.material.tabs.TabLayout$OnTabSelectedListener)' on a null object reference
+//        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+//            Fragment fragment;
+//            @Override
+//            public void onTabSelected(TabLayout.Tab tab) {
+//                int tabPosition = tab.getPosition();
+//                Fragment fragmentRecetaPorId = new RecipeInfoFragment();
+//                switch (tabPosition){
+//                    case 1:
+//                          fragmentRecetaPorId = new RecipeInfoFragment();
+////                         navigateToFragment(fragmentInfo);
+//                        break;
+//                    case 2:
+//                        fragmentRecetaPorId = new RecipeMaterialsFragment();
+//
+//
+//                        break;
+//                    case 3:
+//                        fragmentRecetaPorId = new RecipePreparationFragment();
+//
+//                        break;
+//                    default:
+//
+//                        break;
+//                }
+//                FragmentManager fm = getSupportFragmentManager();
+//                FragmentTransaction transaction = fm.beginTransaction();
+//                transaction.replace(R.id.recipeFrameLayout, fragmentRecetaPorId);
+//                transaction.commit();
+//
+//            }
+//
+//            @Override
+//            public void onTabUnselected(TabLayout.Tab tab) {
+//
+//            }
+//
+//            @Override
+//            public void onTabReselected(TabLayout.Tab tab) {
+//
+//            }
+//        });
 
+    }
 
+    private void setView(){
         recipeImage = findViewById(R.id.recipeImage);
+        //TODO la app peta porque dice que el recipeNameTV = null y no se porque
         recipeNameTV = findViewById(R.id.recipeNameTV);
         recipeMinutesTV = findViewById(R.id.recipeMinutesTV);
         recipePlatesTV = findViewById(R.id.recipePlatesTV);
@@ -66,41 +123,9 @@ public class RecipeActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabLayout);
         frameLayout = findViewById(R.id.recipeFrameLayout);
 
-        initRetrofit();
-        loadPetition();
-
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                int tabPosition = tab.getPosition();
-                switch (tabPosition){
-                    case 1:
-//                        fragment RecipeInfoFragment
-
-                        break;
-                    case 2:
-//                        fragment RecipeMaterialsFragment
-
-                        break;
-                    case 3:
-//                      fragment RecipePreparationFragment
-
-                        break;
-                }
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
 
     }
+
     private void initRetrofit(){
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
@@ -109,14 +134,22 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void loadPetition(){
-        Call<Recipes> recipeInfoPetition = webServiceClient.getRecipeById(recipeId);
+        Call<Recipes> recipeInfoPetition = webServiceClient.getRecipeById(recipeId,ServiceClient.KEY);
         recipeInfoPetition.enqueue(new Callback<Recipes>() {
             @Override
             public void onResponse(Call<Recipes> call, Response<Recipes> response) {
-                if(response.body() != null){
-                    setupView(response.body());
-                }else{
-                    Toast.makeText(RecipeActivity.this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+                if(response.isSuccessful()){
+                    if(response.body() != null){
+                        Recipes recipeDataPorId = response.body();
+
+                        recipeNameTV.setText(response.body().getTitle());
+//                        recipeMinutesTV.setText(recipeDataPorId.getReadyInMinutes().toString());
+//                        recipePlatesTV.setText(recipeDataPorId.getServings().toString());
+
+//                    setupView(recipeDataPorId);
+                    }else{
+                        Toast.makeText(RecipeActivity.this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
@@ -125,14 +158,46 @@ public class RecipeActivity extends AppCompatActivity {
                 Toast.makeText(RecipeActivity.this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
             }
         });
+
+//        recipeInfoPetition.enqueue(new Callback<Comidas>() {
+//            @Override
+//            public void onResponse(Call<Comidas> call, Response<Comidas> response) {
+//                if(response.isSuccessful()){
+//                    if(response.body() != null){
+//                        Comidas recipeDataPorId = response.body();
+//
+//                        recipeNameTV.setText(response.body().getRecipes().get(0).getTitle());
+////                        recipeMinutesTV.setText(recipeDataPorId.getReadyInMinutes().toString());
+////                        recipePlatesTV.setText(recipeDataPorId.getServings().toString());
+//
+////                    setupView(recipeDataPorId);
+//                    }else{
+//                        Toast.makeText(RecipeActivity.this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            }
+//
+////            @Override
+////            public void onFailure(Call<Comidas> call, Throwable t) {
+////
+////            }
+//
+//            @Override
+//            public void onFailure(Call<Comidas> call, Throwable t) {
+//                Toast.makeText(RecipeActivity.this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+
     }
 
     private void setupView(Recipes recipeData){
 
         recipeNameTV.setText(recipeData.getTitle());
-        recipeMinutesTV.setText(recipeData.getReadyInMinutes().toString);
-        recipePlatesTV.setText(recipeData.getServings().toString);
+        recipeMinutesTV.setText(recipeData.getReadyInMinutes().toString());
+        recipePlatesTV.setText(recipeData.getServings().toString());
 //       TODO poner la imagen con el picasso
+
 
     }
 
