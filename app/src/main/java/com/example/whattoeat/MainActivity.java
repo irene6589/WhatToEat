@@ -8,15 +8,39 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
+import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.whattoeat.Fragment.FragmentInicio;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.w3c.dom.Text;
+
+import java.util.List;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
 
+    /*
+     *
+     * Hecho por Alberto Izquierdo Orozco
+     *
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,51 +49,49 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView navigationView = findViewById(R.id.bottomNavigationView);
 
+
+
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-               // navigateToFragment(id);
+                navigateToFragment(id);
                 return true;
             }
         });
 
         navigationView.setSelectedItemId(R.id.nav_home);
 
+
+
     }
     private void navigateToFragment(int itemId) {
+
+
+
         Fragment fragment;
         String title;
 
         switch (itemId) {
             default:
-                    /*fragment = new InicioFragment();
-                    title = "Escuela Estech";
-                    break;
+                fragment = new FragmentInicio();
+                title = "Escuela Estech";
+                break;
 
-                case R.id.nav_home:
-                    fragment = new InicioFragment();
-                    title = "Escuela Estech";
-                    break;
+            case R.id.nav_home:
+                fragment = new FragmentInicio();
+                title = "Escuela Estech";
+                break;
 
-                case R.id.nav_blog:
-                    fragment = new BlogFragment();
-                    title = "Blog";
-                    break;
-
-                case R.id.nav_galeria:
-                    fragment = new GaleriaFragment();
-                    title = "Galería";
-                    break;*/
 
 
         }
-            /*FragmentManager fm = getSupportFragmentManager();
-            FragmentTransaction transaction = fm.beginTransaction();
-            transaction.replace(R.id.frame_layout, fragment);
-            //transaction.addToBackStack(null);
-            transaction.commit();
-            setTitle(title);*/
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.frame_layout, fragment);
+        //transaction.addToBackStack(null);
+        transaction.commit();
+        setTitle(title);
 
     }
     @Override
@@ -111,5 +133,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+
 
 }
