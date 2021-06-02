@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.whattoeat.R;
+import com.example.whattoeat.RecetaInfo.Recipes;
 
 public class RecipeInfoFragment extends Fragment {
     /*
@@ -39,7 +40,7 @@ public class RecipeInfoFragment extends Fragment {
         Bundle bundle = this.getArguments();
         if(bundle != null){
 //            TODO poner la key del bundle
-            Recipes recipes = bundle.getParcelable("");
+            Recipes recipes = bundle.getParcelable("idReceta");
             recipeSummaryTV.setText(recipes.getSummary());
         }
     }
