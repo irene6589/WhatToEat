@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        navigationView.setSelectedItemId(R.id.nav_home);
+        navigationView.setSelectedItemId(R.id.RandomRecipeMenuId);
 
     }
     private void navigateToFragment(int itemId) {
