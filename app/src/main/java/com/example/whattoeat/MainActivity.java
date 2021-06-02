@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.whattoeat.MealPlanWeek.MealPlan_Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+        setContentView(R.layout.activity_main);
 
         BottomNavigationView navigationView = findViewById(R.id.bottomNavigationView);
 
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-               // navigateToFragment(id);
+                navigateToFragment(id);
                 return true;
             }
         });
@@ -38,38 +39,40 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void navigateToFragment(int itemId) {
-        Fragment fragment;
+        Fragment fragment = new Fragment();
         String title;
 
         switch (itemId) {
+
+
             default:
-                    /*fragment = new InicioFragment();
-                    title = "Escuela Estech";
+                fragment = new MealPlan_Fragment();
+                break;
+
+
+                case R.id.RandomRecipeMenuId:
+//                    fragment = new InicioFragment();
+
                     break;
 
-                case R.id.nav_home:
-                    fragment = new InicioFragment();
-                    title = "Escuela Estech";
+                case R.id.MealPlanMenuId:
+                    fragment = new MealPlan_Fragment();
+
                     break;
 
-                case R.id.nav_blog:
-                    fragment = new BlogFragment();
-                    title = "Blog";
-                    break;
+                case R.id.ShopListMenuId:
+//                    fragment = new GaleriaFragment();
 
-                case R.id.nav_galeria:
-                    fragment = new GaleriaFragment();
-                    title = "Galería";
-                    break;*/
+                    break;
 
 
         }
-            /*FragmentManager fm = getSupportFragmentManager();
+            FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
             transaction.replace(R.id.frame_layout, fragment);
             //transaction.addToBackStack(null);
             transaction.commit();
-            setTitle(title);*/
+//            setTitle(title);
 
     }
     @Override
