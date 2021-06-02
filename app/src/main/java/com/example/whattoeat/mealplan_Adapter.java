@@ -10,25 +10,85 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.whattoeat.MealPlanWeek.Day;
+import com.example.whattoeat.MealPlanWeek.MealPlanWeek;
+import com.squareup.picasso.Picasso;
+
+import org.jetbrains.annotations.NotNull;
+
 public class mealplan_Adapter extends RecyclerView.Adapter<mealplan_Adapter.MealPlanHolder> {
     private Context context;
-
-    mealplan_Adapter(Context context){
+    private MealPlanWeek mealplanw;
+    public mealplan_Adapter(Context context){
         this.context = context;
     }
 
     @Override
     public mealplan_Adapter.MealPlanHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_menu_meal, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardlayout_mealplan, parent, false);
+
         return new MealPlanHolder(view);
     }
     @Override
     public void onBindViewHolder (mealplan_Adapter.MealPlanHolder holder, final int position){
+        Day day = new Day();
+        switch (position){
+            case 0:
+                holder.dia_semana.setText("Lunes");
+                day = mealplanw.getWeek().getMonday();
+                break;
+            case 1:
+                holder.dia_semana.setText("Martes");
+                day = mealplanw.getWeek().getTuesday();
+                break;
+            case 2:
+                holder.dia_semana.setText("Miércoles");
+                day = mealplanw.getWeek().getWednesday();
+                break;
+            case 3:
+                holder.dia_semana.setText("Jueves");
+                day = mealplanw.getWeek().getThursday();
+                break;
+            case 4:
+                holder.dia_semana.setText("Viernes");
+                day = mealplanw.getWeek().getFriday();
+                break;
+            case 5:
+                holder.dia_semana.setText("Sábado");
+                day = mealplanw.getWeek().getSaturday();
+                break;
+            case 6:
+                holder.dia_semana.setText("Domingo");
+                day = mealplanw.getWeek().getSunday();
+                break;
+
+        }
+
+        holder.tv_nombrea.setText(day.getMeals().get(0).getTitle());
+        holder.tv_nombreb.setText(day.getMeals().get(1).getTitle());
+        holder.tv_nombrec.setText(day.getMeals().get(2).getTitle());
+
+        holder.tv_npersa.setText(Integer.toString(day.getMeals().get(0).getServings()));
+        holder.tv_npersb.setText(Integer.toString(day.getMeals().get(1).getServings()));
+        holder.tv_npersc.setText(Integer.toString(day.getMeals().get(2).getServings()));
+
+        holder.tv_tiempoa.setText(Integer.toString(day.getMeals().get(0).getReadyInMinutes()));
+        holder.tv_tiempob.setText(Integer.toString(day.getMeals().get(1).getReadyInMinutes()));
+        holder.tv_tiempoc.setText(Integer.toString(day.getMeals().get(2).getReadyInMinutes()));
+
+        Picasso.get().load(day.getMeals().get(0).getImageType()).into(holder.desayuno);
+        Picasso.get().load(day.getMeals().get(1).getImageType()).into(holder.comida);
+        Picasso.get().load(day.getMeals().get(2).getImageType()).into(holder.cena);
+
+
 
     }
 
     @Override
     public int getItemCount() {
+        if(mealplanw != null){
+            return 7;
+        }
         return 0;
     }
 
@@ -68,6 +128,10 @@ public class mealplan_Adapter extends RecyclerView.Adapter<mealplan_Adapter.Meal
         }
     }
 
+public void addMealPlan(MealPlanWeek mpw){
+        mealplanw = mpw;
+        notifyDataSetChanged();
+}
 //TODO montar lista, plan semanal con llamada, itemclicklistener en imagenbutton, colores y tema
 
 }

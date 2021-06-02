@@ -26,7 +26,7 @@ public class Week implements Serializable {
     @SerializedName("sunday")
     @Expose
     private Day sunday;
-    private final static long serialVersionUID = 4702065428322506014L;
+
 
     public Day getMonday() {
         return monday;
