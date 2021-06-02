@@ -1,4 +1,4 @@
-package com.example.whattoeat;
+package com.example.whattoeat.MealPlanWeek;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,11 +10,8 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.whattoeat.MealPlanWeek.Day;
-import com.example.whattoeat.MealPlanWeek.MealPlanWeek;
+import com.example.whattoeat.R;
 import com.squareup.picasso.Picasso;
-
-import org.jetbrains.annotations.NotNull;
 
 public class mealplan_Adapter extends RecyclerView.Adapter<mealplan_Adapter.MealPlanHolder> {
     private Context context;
@@ -80,6 +77,26 @@ public class mealplan_Adapter extends RecyclerView.Adapter<mealplan_Adapter.Meal
         Picasso.get().load(day.getMeals().get(1).getImageType()).into(holder.comida);
         Picasso.get().load(day.getMeals().get(2).getImageType()).into(holder.cena);
 
+        holder.desayuno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
+
+        holder.comida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        holder.cena.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
     }
