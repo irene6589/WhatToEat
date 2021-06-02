@@ -12,10 +12,11 @@ public interface ServiceClient {
     public String KEY ="a78e7398752a4353b2121bb5a17a3f4f";
 
     String BASE_URL = "https://api.spoonacular.com/";
+    public static final String KEY = "9e6ee583540248368a76b7d175d22e5f";
 
     //Parte de Irene, llamada al mealplanner para crear el plan semanal
     @GET("mealplanner/generate")
-    Call<MealPlanWeek> getMealPlanWeek();
+    Call<MealPlanWeek> getMealPlanWeek(@Query("apiKey")String key);
 
 
 

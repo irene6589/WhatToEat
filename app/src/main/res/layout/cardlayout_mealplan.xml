@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
-    android:backgroundTint="@android:color/holo_orange_light"
     android:elevation="10dp"
+    app:cardBackgroundColor="@color/button"
     app:cardCornerRadius="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,6 +23,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:text="Lunes"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,43 +40,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dia_semana" />
 
-        <TextView
-            android:id="@+id/tv_nombre_a"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:drawableStart="@drawable/ic_baseline_arrow_forward_ios_24"
-            android:text="TextView"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/desayuno"
-            app:layout_constraintStart_toStartOf="@+id/desayuno"
-            app:layout_constraintTop_toBottomOf="@+id/desayuno" />
-
-        <TextView
-            android:id="@+id/tv_npersa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:drawableStart="@drawable/ic_baseline_supervisor_account_24"
-            android:text="TextView"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_tiempoa"
-            app:layout_constraintStart_toStartOf="@+id/tv_tiempoa"
-            app:layout_constraintTop_toBottomOf="@+id/tv_tiempoa" />
-
-        <TextView
-            android:id="@+id/tv_tiempoa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:drawableStart="@drawable/ic_baseline_timer_24"
-            android:text="TextView"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_nombre_a"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/tv_nombre_a"
-            app:layout_constraintTop_toBottomOf="@+id/tv_nombre_a" />
-
         <ImageButton
             android:id="@+id/comida"
             android:layout_width="110dp"
@@ -89,41 +53,94 @@
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <TextView
-            android:id="@+id/tv_nombreb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:drawableStart="@drawable/ic_baseline_arrow_forward_ios_24"
-            android:text="TextView"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/comida"
-            app:layout_constraintStart_toStartOf="@+id/comida"
-            app:layout_constraintTop_toBottomOf="@+id/comida" />
-
-        <TextView
             android:id="@+id/tv_tiempob"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:drawableStart="@drawable/ic_baseline_timer_24"
             android:text="TextView"
-            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:drawableTint="@color/light_orange"
             app:layout_constraintEnd_toEndOf="@+id/tv_nombreb"
+            app:layout_constraintHorizontal_bias="0.514"
             app:layout_constraintStart_toStartOf="@+id/tv_nombreb"
             app:layout_constraintTop_toBottomOf="@+id/tv_nombreb" />
+
+        <TextView
+            android:id="@+id/tv_tiempoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:drawableStart="@drawable/ic_baseline_timer_24"
+            android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:drawableTint="@color/light_orange"
+            app:layout_constraintEnd_toEndOf="@+id/tv_nombrec"
+            app:layout_constraintHorizontal_bias="0.542"
+            app:layout_constraintStart_toStartOf="@+id/tv_nombrec"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nombrec" />
+
+        <TextView
+            android:id="@+id/tv_tiempoa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:drawableStart="@drawable/ic_baseline_timer_24"
+            android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:drawableTint="@color/light_orange"
+            app:layout_constraintEnd_toEndOf="@+id/tv_nombre_a"
+            app:layout_constraintHorizontal_bias="0.371"
+            app:layout_constraintStart_toStartOf="@+id/tv_nombre_a"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nombre_a" />
+
+        <TextView
+            android:id="@+id/tv_npersc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:drawableStart="@drawable/ic_baseline_supervisor_account_24"
+            android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:drawableTint="@color/light_orange"
+            app:layout_constraintEnd_toEndOf="@+id/tv_tiempoc"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_tiempoc"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tiempoc" />
 
         <TextView
             android:id="@+id/tv_npersb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="2dp"
             android:drawableStart="@drawable/ic_baseline_supervisor_account_24"
             android:text="TextView"
-            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:drawableTint="@color/light_orange"
             app:layout_constraintEnd_toEndOf="@+id/tv_tiempob"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/tv_tiempob"
             app:layout_constraintTop_toBottomOf="@+id/tv_tiempob" />
+
+        <TextView
+            android:id="@+id/tv_npersa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:drawableStart="@drawable/ic_baseline_supervisor_account_24"
+            android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:drawableTint="@color/light_orange"
+            app:layout_constraintEnd_toEndOf="@+id/tv_tiempoa"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_tiempoa"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tiempoa" />
 
         <ImageButton
             android:id="@+id/cena"
@@ -137,41 +154,52 @@
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <TextView
-            android:id="@+id/tv_nombrec"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/tv_nombreb"
+            android:layout_width="100dp"
+            android:layout_height="42dp"
             android:layout_marginTop="5dp"
             android:drawableStart="@drawable/ic_baseline_arrow_forward_ios_24"
             android:text="TextView"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/cena"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:drawableTint="@color/light_orange"
+            app:layout_constraintEnd_toStartOf="@+id/tv_nombrec"
+            app:layout_constraintHorizontal_bias="0.125"
+            app:layout_constraintStart_toStartOf="@+id/comida"
+            app:layout_constraintTop_toBottomOf="@+id/comida" />
+
+        <TextView
+            android:id="@+id/tv_nombrec"
+            android:layout_width="100dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="5dp"
+            android:drawableStart="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:drawableTint="@color/light_orange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.333"
             app:layout_constraintStart_toStartOf="@+id/cena"
             app:layout_constraintTop_toBottomOf="@+id/cena" />
 
         <TextView
-            android:id="@+id/tv_npersc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:drawableStart="@drawable/ic_baseline_supervisor_account_24"
+            android:id="@+id/tv_nombre_a"
+            android:layout_width="100dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="5dp"
+            android:drawableStart="@drawable/ic_baseline_arrow_forward_ios_24"
             android:text="TextView"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_tiempoc"
-            app:layout_constraintStart_toStartOf="@+id/tv_tiempoc"
-            app:layout_constraintTop_toBottomOf="@+id/tv_tiempoc" />
-
-        <TextView
-            android:id="@+id/tv_tiempoc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:drawableStart="@drawable/ic_baseline_timer_24"
-            android:text="TextView"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_nombrec"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:drawableTint="@color/light_orange"
+            app:layout_constraintEnd_toStartOf="@+id/tv_nombreb"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/tv_nombrec"
-            app:layout_constraintTop_toBottomOf="@+id/tv_nombrec" />
+            app:layout_constraintStart_toStartOf="@+id/desayuno"
+            app:layout_constraintTop_toBottomOf="@+id/desayuno" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
