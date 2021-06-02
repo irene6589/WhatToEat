@@ -14,6 +14,8 @@ import com.example.whattoeat.R;
 import com.example.whattoeat.RecetaInfo.Recipes;
 import com.example.whattoeat.RecetaInfo.ExtendedIngredient;
 
+import java.util.List;
+
 public class RecipePreparationFragment extends Fragment {
 
     /*
@@ -46,25 +48,33 @@ public class RecipePreparationFragment extends Fragment {
         Bundle bundle = this.getArguments();
         if(bundle != null){
             //hacer un bucle para rellenar un string con los igredientes
-            String allIngredients = "";
+
 //            TODO poner clave
-            Recipes recipe = bundle.getParcelable("");
-            for (int i = 0; i < recipe.getExtendedIngredients().size(); i++){
-//                TODO poner un salto de linea donde pone salto de linea
-                allIngredients = allIngredients +"salto de linea"+ recipe.getExtendedIngredients().get(i).getName();
+            Recipes recipe = bundle.getParcelable("idReceta");
+           String allIngredients = "";
+           //Bucle para pillar todos los ingredientes y meterlos en un array
+            for (int i = 0; i < recipe.getAnalyzedInstructions().get(0).getSteps().size(); i++){
+//                TODO pillar steps > ingredients > name
+                for(int j = 0; j<recipe.getAnalyzedInstructions().get(0).getSteps().get(i).getIngredients().size(); j++){
+                    //TODO meter salto de linea
+                    allIngredients = allIngredients + recipe.getAnalyzedInstructions().get(0).getSteps().get(i).getIngredients().get(j).getName();
+                    allIngredients += "\n";
+                }
+
+                //allIngredients = allIngredients +"salto de linea"+ recipe.getExtendedIngredients().get(i).getName();
             }
 
 
 //            hacer un array para poner todos los pasos en un string
-            String allSteps = "";
+            //String allSteps = "";
 //            for(int i = 0; i < recipe.getAnalyzedInstructions().getSteps().getStep().length; i++){
 //                //                TODO poner un salto de linea donde pone salto de linea
 //                allSteps = allSteps + "salto de linea" + recipe.getAnalyzedInstructions().getSteps().get(i).getStep();
 //            }
-            allSteps = recipe.getInstructions();
+            //allSteps = recipe.getInstructions();
 
             ingredientsTV.setText(allIngredients);
-            instructionsTV.setText(allSteps);
+            instructionsTV.setText(recipe.getInstructions());
 
         }
 

@@ -1,5 +1,8 @@
 
 package com.example.whattoeat.RecetaInfo;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.List;
 //import javax.annotation.Generated;
@@ -7,7 +10,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 //@Generated("jsonschema2pojo")
-public class ExtendedIngredient implements Serializable
+public class ExtendedIngredient implements Serializable, Parcelable
 {
 
     @SerializedName("id")
@@ -53,6 +56,43 @@ public class ExtendedIngredient implements Serializable
     @Expose
     private Measures measures;
     private final static long serialVersionUID = -988815411181740926L;
+
+    protected ExtendedIngredient(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        aisle = in.readString();
+        image = in.readString();
+        consistency = in.readString();
+        name = in.readString();
+        nameClean = in.readString();
+        original = in.readString();
+        originalString = in.readString();
+        originalName = in.readString();
+        if (in.readByte() == 0) {
+            amount = null;
+        } else {
+            amount = in.readDouble();
+        }
+        unit = in.readString();
+        meta = in.createStringArrayList();
+        metaInformation = in.createStringArrayList();
+        measures = in.readParcelable(Measures.class.getClassLoader());
+    }
+
+    public static final Creator<ExtendedIngredient> CREATOR = new Creator<ExtendedIngredient>() {
+        @Override
+        public ExtendedIngredient createFromParcel(Parcel in) {
+            return new ExtendedIngredient(in);
+        }
+
+        @Override
+        public ExtendedIngredient[] newArray(int size) {
+            return new ExtendedIngredient[size];
+        }
+    };
 
     public Integer getId() {
         return id;
@@ -167,4 +207,36 @@ public class ExtendedIngredient implements Serializable
         this.measures = measures;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(id);
+        }
+        dest.writeString(aisle);
+        dest.writeString(image);
+        dest.writeString(consistency);
+        dest.writeString(name);
+        dest.writeString(nameClean);
+        dest.writeString(original);
+        dest.writeString(originalString);
+        dest.writeString(originalName);
+        if (amount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(amount);
+        }
+        dest.writeString(unit);
+        dest.writeStringList(meta);
+        dest.writeStringList(metaInformation);
+        dest.writeParcelable(measures, flags);
+    }
 }
