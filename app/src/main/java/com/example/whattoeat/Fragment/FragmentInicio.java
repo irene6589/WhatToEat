@@ -20,6 +20,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.whattoeat.R;
 import com.example.whattoeat.RecetaInfo.Comidas;
+import com.example.whattoeat.RecetaInfo.Recipes;
 import com.example.whattoeat.RecipeInfoFragments.RecipeInfoFragment;
 import com.example.whattoeat.RecipeInfoFragments.RecipeMaterialsFragment;
 import com.example.whattoeat.RecipeInfoFragments.RecipePreparationFragment;
@@ -49,6 +50,8 @@ public class FragmentInicio extends Fragment {
     private ImageView recipeImage;
     private SwipeRefreshLayout swipere;
     private TabLayout tabLayout;
+    Comidas recipeData;
+    Recipes pasarReceta;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -78,8 +81,9 @@ public class FragmentInicio extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        inicioRetrofit();
+        obtenerDatos();
 
-        navigateToFragment(0);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -105,8 +109,7 @@ public class FragmentInicio extends Fragment {
             }
         });
 
-        inicioRetrofit();
-        obtenerDatos();
+
 
 
         swipere.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -119,12 +122,12 @@ public class FragmentInicio extends Fragment {
 
     }
     private void navigateToFragment(int itemId) {
-        TabLayout.Tab tabPulsado = tabLayout.getTabAt(itemId);
-        String title = String.valueOf(tabPulsado.getText());
+//        TabLayout.Tab tabPulsado = tabLayout.getTabAt(itemId);
+//        String title = String.valueOf(tabPulsado.getText());
 
-        Fragment fragment;
+        Fragment fragment = new Fragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("position", itemId);
+        bundle.putParcelable("idReceta", pasarReceta);
 
 
         switch (itemId) {
@@ -175,11 +178,14 @@ public class FragmentInicio extends Fragment {
                     int code = response.code();
                     if(response.body() != null){
 
-                        Comidas recipeData = response.body();
+                        recipeData = response.body();
 
 
                         Bundle bundle = new Bundle();
+                        pasarReceta = recipeData.getRecipes().get(0);
                         bundle.putParcelable("KeyComidas", recipeData);
+
+                        navigateToFragment(0);
 
 
                         recipePlatesTV.setText("Personas:" + response.body().getRecipes().get(0).getServings());

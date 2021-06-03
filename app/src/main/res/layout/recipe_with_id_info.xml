@@ -5,61 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/recipeImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipere"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_baseline_supervisor_account_24"
-        android:text="TextView"
-        app:drawableTint="@color/red"
-        app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        android:id="@+id/recipeNameTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_baseline_arrow_forward_ios_24"
-        android:text="TextView"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:drawableTint="@color/red"
-        app:layout_constraintBottom_toTopOf="@+id/recipeMinutesTV"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/recipeImage"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/recipeMinutesTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_baseline_timer_24"
-        android:text="TextView"
-        app:drawableTint="@color/red"
-        app:layout_constraintBottom_toTopOf="@+id/recipePlatesTV"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/recipeImage"
-        app:layout_constraintTop_toBottomOf="@+id/recipeNameTV" />
+            <ImageView
+                android:id="@+id/recipeImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/claro"
-        app:layout_constraintTop_toBottomOf="@+id/recipeImage">
+            <TextView
+                android:id="@+id/recipePlatesTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="TextView"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/recipeImage"
+                app:layout_constraintTop_toBottomOf="@+id/recipeMinutesTV" />
 
             <TextView
                 android:id="@+id/recipeNameTV"
@@ -91,14 +71,11 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/recipeImage">
 
-    <FrameLayout
-        android:id="@+id/recipeFrameLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabItemUno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Info" />
 
                 <com.google.android.material.tabs.TabItem
                     android:id="@+id/tabItemDos"
@@ -133,7 +110,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:clickable="true"
-        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
@@ -144,8 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:clickable="true"
-        android:foreground="@drawable/ic_baseline_star_24"
-        app:backgroundTint="@color/button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/btn_star" />
 </androidx.constraintlayout.widget.ConstraintLayout>

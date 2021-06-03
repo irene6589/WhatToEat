@@ -12,13 +12,11 @@
     android:backgroundTint="#4FE65284"
     android:weightSum="8">
 
-    <ImageView
-        android:id="@+id/img_delete"
+    <ImageButton
+        android:id="@+id/imageButton"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
         app:srcCompat="@drawable/ic_baseline_delete_forever_24" />
 
     <TextView
