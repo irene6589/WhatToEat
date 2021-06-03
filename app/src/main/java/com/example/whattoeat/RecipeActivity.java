@@ -1,5 +1,6 @@
 package com.example.whattoeat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -58,16 +59,12 @@ public class RecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recipe_with_id_info);
 
-//      hacer que pille el bundle con la id de la receta que se envia desde el holder del mealplan de irene o desde la lista de Borja
-        Bundle bundle = getIntent().getExtras();
-//        TODO sustituir la key del bundle por la que ponga Irene
-        if(bundle != null && bundle.containsKey("")){
-////            TODO sustituir la key de la id por la que ponga Irene
-            recipeId = bundle.getInt("");
-        }else {
-////            ponemos una id de una receta de la api como ejemplo
-            recipeId = 660447;
-        }
+//pillar los datos del intent desde la actividad de Irene o de la de Borja
+        Intent intent = getIntent();
+        recipeId = intent.getIntExtra("mealplanid",660447);
+        //TODO hacer lo mismo de arriba pero en el valor default poner la id que daria Borja
+
+
         setView();
         initRetrofit();
         loadPetition();

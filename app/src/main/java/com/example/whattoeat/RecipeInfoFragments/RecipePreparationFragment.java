@@ -49,14 +49,14 @@ public class RecipePreparationFragment extends Fragment {
         if(bundle != null){
             //hacer un bucle para rellenar un string con los igredientes
 
-//            TODO poner clave
+
             Recipes recipe = bundle.getParcelable("idReceta");
            String allIngredients = "";
            //Bucle para pillar todos los ingredientes y meterlos en un array
             for (int i = 0; i < recipe.getAnalyzedInstructions().get(0).getSteps().size(); i++){
-//                TODO pillar steps > ingredients > name
+
                 for(int j = 0; j<recipe.getAnalyzedInstructions().get(0).getSteps().get(i).getIngredients().size(); j++){
-                    //TODO meter salto de linea
+
                     allIngredients = allIngredients + recipe.getAnalyzedInstructions().get(0).getSteps().get(i).getIngredients().get(j).getName();
                     allIngredients += "\n";
                 }
@@ -68,7 +68,7 @@ public class RecipePreparationFragment extends Fragment {
 //            hacer un array para poner todos los pasos en un string
             //String allSteps = "";
 //            for(int i = 0; i < recipe.getAnalyzedInstructions().getSteps().getStep().length; i++){
-//                //                TODO poner un salto de linea donde pone salto de linea
+
 //                allSteps = allSteps + "salto de linea" + recipe.getAnalyzedInstructions().getSteps().get(i).getStep();
 //            }
             //allSteps = recipe.getInstructions();

@@ -12,7 +12,7 @@ import com.google.gson.annotations.SerializedName;
 
 //@Generated("jsonschema2pojo")
 
-//TODO hacer que esta clase y las que sean necesarias sean parcelable
+
 
 public class Recipes implements Serializable, Parcelable
 {
@@ -466,7 +466,7 @@ public class Recipes implements Serializable, Parcelable
     public WinePairing getWinePairing() {
         return winePairing;
     }
-    //    TODO preguntar a Sergio porque esto da error, no puede acceder al recurso y no se porque ni como arreglarlo
+
     public void setWinePairing(WinePairing winePairing) {
         this.winePairing = winePairing;
     }
