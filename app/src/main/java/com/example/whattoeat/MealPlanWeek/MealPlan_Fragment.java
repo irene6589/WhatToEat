@@ -1,7 +1,6 @@
 package com.example.whattoeat.MealPlanWeek;
 
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.whattoeat.R;
 import com.example.whattoeat.ServiceClient.ServiceClient;
-import com.example.whattoeat.mealplan_Adapter;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -1,6 +1,7 @@
-package com.example.whattoeat;
+package com.example.whattoeat.MealPlanWeek;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +11,9 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.whattoeat.MealPlanWeek.Day;
-import com.example.whattoeat.MealPlanWeek.MealPlanWeek;
+import com.example.whattoeat.R;
+import com.example.whattoeat.RecipeActivity;
 import com.squareup.picasso.Picasso;
-
-import org.jetbrains.annotations.NotNull;
 
 public class mealplan_Adapter extends RecyclerView.Adapter<mealplan_Adapter.MealPlanHolder> {
     private Context context;
@@ -76,10 +75,38 @@ public class mealplan_Adapter extends RecyclerView.Adapter<mealplan_Adapter.Meal
         holder.tv_tiempob.setText(Integer.toString(day.getMeals().get(1).getReadyInMinutes()));
         holder.tv_tiempoc.setText(Integer.toString(day.getMeals().get(2).getReadyInMinutes()));
 
-        Picasso.get().load(day.getMeals().get(0).getImageType()).into(holder.desayuno);
-        Picasso.get().load(day.getMeals().get(1).getImageType()).into(holder.comida);
-        Picasso.get().load(day.getMeals().get(2).getImageType()).into(holder.cena);
+        Picasso.get().load("https://spoonacular.com/recipeImages/" + day.getMeals().get(0).getId() + "-480x360.jpg").into(holder.desayuno);
+        Picasso.get().load("https://spoonacular.com/recipeImages/" + day.getMeals().get(1).getId() + "-480x360.jpg").into(holder.comida);
+        Picasso.get().load("https://spoonacular.com/recipeImages/" + day.getMeals().get(2).getId() + "-480x360.jpg").into(holder.cena);
 
+        Day finalDay = day;
+        holder.desayuno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, RecipeActivity.class);
+                intent.putExtra("mealplanid", finalDay.getMeals().get(0).getId());
+                context.startActivity(intent);
+            }
+        });
+
+        holder.comida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, RecipeActivity.class);
+                intent.putExtra("mealplanid", finalDay.getMeals().get(1).getId());
+                context.startActivity(intent);
+            }
+        });
+
+        holder.cena.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, RecipeActivity.class);
+                intent.putExtra("mealplanid", finalDay.getMeals().get(2).getId());
+                context.startActivity(intent);
+
+            }
+        });
 
 
     }
