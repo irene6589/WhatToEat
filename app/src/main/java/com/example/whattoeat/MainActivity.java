@@ -8,16 +8,38 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
+import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.whattoeat.MealPlanWeek.MealPlan_Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.w3c.dom.Text;
+
+import java.util.List;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class MainActivity extends AppCompatActivity {
 
 
+    /*
+     *
+     * Hecho por Alberto Izquierdo Orozco
+     *
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BottomNavigationView navigationView = findViewById(R.id.bottomNavigationView);
+
+
 
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -37,42 +61,39 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView.setSelectedItemId(R.id.RandomRecipeMenuId);
 
+
+
     }
     private void navigateToFragment(int itemId) {
-        Fragment fragment = new Fragment();
+        Fragment fragment;
         String title;
 
         switch (itemId) {
 
 
             default:
-                fragment = new MealPlan_Fragment();
-                break;
-
-
-                case R.id.RandomRecipeMenuId:
-//                    fragment = new InicioFragment();
-
+                    /*fragment = new InicioFragment();
+                    title = "Escuela Estech";
                     break;
 
-                case R.id.MealPlanMenuId:
-                    fragment = new MealPlan_Fragment();
-
+                case R.id.nav_home:
+                    fragment = new InicioFragment();
+                    title = "Escuela Estech";
                     break;
 
-                case R.id.ShopListMenuId:
-//                    fragment = new GaleriaFragment();
-
+                case R.id.nav_blog:
+                    fragment = new BlogFragment();
+                    title = "Blog";
                     break;
 
 
         }
-            FragmentManager fm = getSupportFragmentManager();
+            /*FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
             transaction.replace(R.id.frame_layout, fragment);
             //transaction.addToBackStack(null);
             transaction.commit();
-//            setTitle(title);
+            setTitle(title);*/
 
     }
     @Override
@@ -114,5 +135,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+
 
 }

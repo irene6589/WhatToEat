@@ -202,7 +202,7 @@ public class ExtendedIngredient implements Serializable, Parcelable
         return measures;
     }
 
-//    TODO preguntar a Sergio porque esto da error, no puede acceder al recurso y no se porque ni como arreglarlo
+
     public void setMeasures(Measures measures) {
         this.measures = measures;
     }

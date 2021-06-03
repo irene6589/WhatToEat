@@ -39,7 +39,7 @@ public class RecipeInfoFragment extends Fragment {
 //        pillar el bundle con los datos
         Bundle bundle = this.getArguments();
         if(bundle != null){
-//            TODO poner la key del bundle
+
             Recipes recipes = bundle.getParcelable("idReceta");
             recipeSummaryTV.setText(recipes.getSummary());
         }
