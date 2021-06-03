@@ -44,7 +44,7 @@ public class RecipeMaterialsFragment extends Fragment {
 //        pillar el bundle y poner los datos
         Bundle bundle = this.getArguments();
         if(bundle != null){
-//            TODO poner clave
+
             Recipes recipe = bundle.getParcelable("idReceta");
 //            hacer un string con los equipment que necesita la receta
             String equipamiento = "";
@@ -55,16 +55,16 @@ public class RecipeMaterialsFragment extends Fragment {
 //                for(int j = 0; j < recipes.getAnalyzedInstructions().get(i).getSteps().size(); j++){
 //
 //                    for(int u = 0; u < recipes.getAnalyzedInstructions().get(i).getSteps().get(j).getEquipment().size(); u++){
-////                        TODO poner un salto de linea donde pone salto de linea
+
 //                        equipamiento = equipamiento + recipes.getAnalyzedInstructions().get(i).getSteps().get(j).getEquipment().get(u);
 //                    }
 //                }
 //
 //            }
             for (int i = 0; i < recipe.getAnalyzedInstructions().get(0).getSteps().size(); i++){
-//                TODO pillar steps > ingredients > name
+
                 for(int j = 0; j<recipe.getAnalyzedInstructions().get(0).getSteps().get(i).getEquipment().size(); j++){
-                    //TODO meter salto de linea
+
                     equipamiento = equipamiento + recipe.getAnalyzedInstructions().get(0).getSteps().get(i).getEquipment().get(j).getName();
                     equipamiento += "\n";
                 }

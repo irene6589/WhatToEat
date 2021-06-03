@@ -48,7 +48,7 @@ public class Measures implements Serializable, Parcelable
     public Metric getMetric() {
         return metric;
     }
-    //    TODO preguntar a Sergio porque esto da error, no puede acceder al recurso y no se porque ni como arreglarlo
+
     public void setMetric(Metric metric) {
         this.metric = metric;
     }
