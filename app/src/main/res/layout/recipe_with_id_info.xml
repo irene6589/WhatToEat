@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
@@ -19,7 +19,9 @@
         android:id="@+id/recipePlatesTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_baseline_supervisor_account_24"
         android:text="TextView"
+        app:drawableTint="@color/red"
         app:layout_constraintBottom_toTopOf="@+id/tabLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -30,7 +32,11 @@
         android:id="@+id/recipeNameTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_baseline_arrow_forward_ios_24"
         android:text="TextView"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:drawableTint="@color/red"
         app:layout_constraintBottom_toTopOf="@+id/recipeMinutesTV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -41,7 +47,9 @@
         android:id="@+id/recipeMinutesTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_baseline_timer_24"
         android:text="TextView"
+        app:drawableTint="@color/red"
         app:layout_constraintBottom_toTopOf="@+id/recipePlatesTV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -52,6 +60,7 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/claro"
         app:layout_constraintTop_toBottomOf="@+id/recipeImage">
 
         <com.google.android.material.tabs.TabItem
@@ -72,7 +81,7 @@
 
     <FrameLayout
         android:id="@+id/recipeFrameLayout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,6 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:clickable="true"
+        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
@@ -97,7 +107,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:clickable="true"
+        android:foreground="@drawable/ic_baseline_star_24"
+        app:backgroundTint="@color/button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/btn_star" />
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
