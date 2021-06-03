@@ -10,20 +10,19 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Comidas implements Parcelable {
-
     @SerializedName("recipes")
     @Expose
     private List<Recipes> recipes = null;
 
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public Comidas() {
     }
 
     /**
-     * 
+     *
      * @param recipes
      */
     public Comidas(List<Recipes> recipes) {
@@ -32,6 +31,17 @@ public class Comidas implements Parcelable {
     }
 
     protected Comidas(Parcel in) {
+        recipes = in.createTypedArrayList(Recipes.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeTypedList(recipes);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Comidas> CREATOR = new Creator<Comidas>() {
@@ -54,12 +64,7 @@ public class Comidas implements Parcelable {
         this.recipes = recipes;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public static Creator<Comidas> getCREATOR() {
+        return CREATOR;
     }
 }
