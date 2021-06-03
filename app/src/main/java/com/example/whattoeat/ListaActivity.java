@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.example.whattoeat.ServiceClient.ServiceClient;
 import com.example.whattoeat.adapters.AdapterListaCompra;
 import com.example.whattoeat.models.Aisle;
 import com.example.whattoeat.models.Item;
@@ -33,7 +34,7 @@ public class ListaActivity extends Fragment {
 
     private RecyclerView recyclerView;
     private AdapterListaCompra adapter;
-    private WebServiceClient webServiceClient;
+    private ServiceClient webServiceClient;
     private StaggeredGridLayoutManager layoutManager;
 
     @Nullable
@@ -64,15 +65,15 @@ public class ListaActivity extends Fragment {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(WebServiceClient.BASE_URL)
+                .baseUrl(ServiceClient.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClientBuilder.build())
                 .build();
-        webServiceClient = retrofit.create(WebServiceClient.class);
+        webServiceClient = retrofit.create(ServiceClient.class);
     }
     private void lanzarPerticion() {
 
-        Call<ListaCompra> peticion = webServiceClient.getlistacompra(WebServiceClient.KEY);
+        Call<ListaCompra> peticion = webServiceClient.getlistacompra(ServiceClient.KEY);
 
         peticion.enqueue(new Callback<ListaCompra>() {
             @Override

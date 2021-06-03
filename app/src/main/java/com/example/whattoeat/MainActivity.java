@@ -8,38 +8,17 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
-import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.whattoeat.Fragment.FragmentInicio;
 import com.example.whattoeat.MealPlanWeek.MealPlan_Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import org.w3c.dom.Text;
-
-import java.util.List;
-
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    /*
-     *
-     * Hecho por Alberto Izquierdo Orozco
-     *
-     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BottomNavigationView navigationView = findViewById(R.id.bottomNavigationView);
-
-
-
+        navigateToFragment(8);
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -61,39 +38,42 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView.setSelectedItemId(R.id.RandomRecipeMenuId);
 
-
-
     }
     private void navigateToFragment(int itemId) {
-        Fragment fragment;
-        String title;
+        Fragment fragment = new Fragment();
+
 
         switch (itemId) {
 
 
             default:
-                    /*fragment = new InicioFragment();
-                    title = "Escuela Estech";
-                    break;
+                fragment = new MealPlan_Fragment();
+                break;
 
-                case R.id.nav_home:
-                    fragment = new InicioFragment();
-                    title = "Escuela Estech";
-                    break;
 
-                case R.id.nav_blog:
-                    fragment = new BlogFragment();
-                    title = "Blog";
-                    break;
+            case R.id.RandomRecipeMenuId:
+                fragment = new FragmentInicio();
+
+                break;
+
+            case R.id.MealPlanMenuId:
+                fragment = new MealPlan_Fragment();
+
+                break;
+
+            case R.id.ShopListMenuId:
+                fragment = new ListaActivity();
+
+                break;
 
 
         }
-            /*FragmentManager fm = getSupportFragmentManager();
-            FragmentTransaction transaction = fm.beginTransaction();
-            transaction.replace(R.id.frame_layout, fragment);
-            //transaction.addToBackStack(null);
-            transaction.commit();
-            setTitle(title);*/
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.frame_layout, fragment);
+        //transaction.addToBackStack(null);
+        transaction.commit();
+//            setTitle(title);
 
     }
     @Override
@@ -117,9 +97,9 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed(){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Atención");
-        builder.setMessage("¿Desea salir de la aplicación?");
-        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+        builder.setTitle("AtenciÃ³n");
+        builder.setMessage("Â¿Desea salir de la aplicaciÃ³n?");
+        builder.setPositiveButton("SÃ­", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -135,7 +115,5 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
-
 
 }

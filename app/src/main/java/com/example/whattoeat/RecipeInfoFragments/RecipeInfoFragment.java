@@ -1,6 +1,7 @@
 package com.example.whattoeat.RecipeInfoFragments;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.whattoeat.R;
+import com.example.whattoeat.RecetaInfo.Comidas;
 import com.example.whattoeat.RecetaInfo.Recipes;
 
 public class RecipeInfoFragment extends Fragment {
@@ -39,9 +41,15 @@ public class RecipeInfoFragment extends Fragment {
 //        pillar el bundle con los datos
         Bundle bundle = this.getArguments();
         if(bundle != null){
-
             Recipes recipes = bundle.getParcelable("idReceta");
-            recipeSummaryTV.setText(recipes.getSummary());
+
+            if(recipes != null){
+                recipeSummaryTV.setText(recipes.getSummary());
+            }else{
+//                Comidas comidas = bundle.getParcelableArray("idReceta");
+//                recipeSummaryTV.setText(comidas);
+            }
+
         }
     }
 }
