@@ -17,8 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.whattoeat.Fragment.FragmentInicio;
-
+import com.example.whattoeat.MealPlanWeek.MealPlan_Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.w3c.dom.Text;
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+        setContentView(R.layout.activity_main);
 
         BottomNavigationView navigationView = findViewById(R.id.bottomNavigationView);
 
@@ -60,38 +59,41 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        navigationView.setSelectedItemId(R.id.nav_home);
+        navigationView.setSelectedItemId(R.id.RandomRecipeMenuId);
 
 
 
     }
     private void navigateToFragment(int itemId) {
-
-
-
         Fragment fragment;
         String title;
 
         switch (itemId) {
+
+
             default:
-                fragment = new FragmentInicio();
-                title = "Escuela Estech";
-                break;
+                    /*fragment = new InicioFragment();
+                    title = "Escuela Estech";
+                    break;
 
-            case R.id.nav_home:
-                fragment = new FragmentInicio();
-                title = "Escuela Estech";
-                break;
+                case R.id.nav_home:
+                    fragment = new InicioFragment();
+                    title = "Escuela Estech";
+                    break;
 
+                case R.id.nav_blog:
+                    fragment = new BlogFragment();
+                    title = "Blog";
+                    break;
 
 
         }
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.frame_layout, fragment);
-        //transaction.addToBackStack(null);
-        transaction.commit();
-        setTitle(title);
+            /*FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction transaction = fm.beginTransaction();
+            transaction.replace(R.id.frame_layout, fragment);
+            //transaction.addToBackStack(null);
+            transaction.commit();
+            setTitle(title);*/
 
     }
     @Override

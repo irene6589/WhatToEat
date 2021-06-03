@@ -1,6 +1,9 @@
 
 package com.example.whattoeat.RecetaInfo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.List;
 //import javax.annotation.Generated;
@@ -11,7 +14,7 @@ import com.google.gson.annotations.SerializedName;
 
 //TODO hacer que esta clase y las que sean necesarias sean parcelable
 
-public class Recipes implements Serializable
+public class Recipes implements Serializable, Parcelable
 {
 
     @SerializedName("vegetarian")
@@ -123,6 +126,94 @@ public class Recipes implements Serializable
     @Expose
     private String spoonacularSourceUrl;
     private final static long serialVersionUID = -6133794739193666477L;
+
+    protected Recipes(Parcel in) {
+        byte tmpVegetarian = in.readByte();
+        vegetarian = tmpVegetarian == 0 ? null : tmpVegetarian == 1;
+        byte tmpVegan = in.readByte();
+        vegan = tmpVegan == 0 ? null : tmpVegan == 1;
+        byte tmpGlutenFree = in.readByte();
+        glutenFree = tmpGlutenFree == 0 ? null : tmpGlutenFree == 1;
+        byte tmpDairyFree = in.readByte();
+        dairyFree = tmpDairyFree == 0 ? null : tmpDairyFree == 1;
+        byte tmpVeryHealthy = in.readByte();
+        veryHealthy = tmpVeryHealthy == 0 ? null : tmpVeryHealthy == 1;
+        byte tmpCheap = in.readByte();
+        cheap = tmpCheap == 0 ? null : tmpCheap == 1;
+        byte tmpVeryPopular = in.readByte();
+        veryPopular = tmpVeryPopular == 0 ? null : tmpVeryPopular == 1;
+        byte tmpSustainable = in.readByte();
+        sustainable = tmpSustainable == 0 ? null : tmpSustainable == 1;
+        if (in.readByte() == 0) {
+            weightWatcherSmartPoints = null;
+        } else {
+            weightWatcherSmartPoints = in.readInt();
+        }
+        gaps = in.readString();
+        byte tmpLowFodmap = in.readByte();
+        lowFodmap = tmpLowFodmap == 0 ? null : tmpLowFodmap == 1;
+        if (in.readByte() == 0) {
+            aggregateLikes = null;
+        } else {
+            aggregateLikes = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            spoonacularScore = null;
+        } else {
+            spoonacularScore = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            healthScore = null;
+        } else {
+            healthScore = in.readDouble();
+        }
+        creditsText = in.readString();
+        license = in.readString();
+        sourceName = in.readString();
+        if (in.readByte() == 0) {
+            pricePerServing = null;
+        } else {
+            pricePerServing = in.readDouble();
+        }
+        extendedIngredients = in.createTypedArrayList(ExtendedIngredient.CREATOR);
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        title = in.readString();
+        if (in.readByte() == 0) {
+            readyInMinutes = null;
+        } else {
+            readyInMinutes = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            servings = null;
+        } else {
+            servings = in.readInt();
+        }
+        sourceUrl = in.readString();
+        image = in.readString();
+        imageType = in.readString();
+        summary = in.readString();
+        diets = in.createStringArrayList();
+        winePairing = in.readParcelable(WinePairing.class.getClassLoader());
+        instructions = in.readString();
+        analyzedInstructions = in.createTypedArrayList(AnalyzedInstruction.CREATOR);
+        spoonacularSourceUrl = in.readString();
+    }
+
+    public static final Creator<Recipes> CREATOR = new Creator<Recipes>() {
+        @Override
+        public Recipes createFromParcel(Parcel in) {
+            return new Recipes(in);
+        }
+
+        @Override
+        public Recipes[] newArray(int size) {
+            return new Recipes[size];
+        }
+    };
 
     public Boolean getVegetarian() {
         return vegetarian;
@@ -412,4 +503,84 @@ public class Recipes implements Serializable
         this.spoonacularSourceUrl = spoonacularSourceUrl;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeByte((byte) (vegetarian == null ? 0 : vegetarian ? 1 : 2));
+        dest.writeByte((byte) (vegan == null ? 0 : vegan ? 1 : 2));
+        dest.writeByte((byte) (glutenFree == null ? 0 : glutenFree ? 1 : 2));
+        dest.writeByte((byte) (dairyFree == null ? 0 : dairyFree ? 1 : 2));
+        dest.writeByte((byte) (veryHealthy == null ? 0 : veryHealthy ? 1 : 2));
+        dest.writeByte((byte) (cheap == null ? 0 : cheap ? 1 : 2));
+        dest.writeByte((byte) (veryPopular == null ? 0 : veryPopular ? 1 : 2));
+        dest.writeByte((byte) (sustainable == null ? 0 : sustainable ? 1 : 2));
+        if (weightWatcherSmartPoints == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(weightWatcherSmartPoints);
+        }
+        dest.writeString(gaps);
+        dest.writeByte((byte) (lowFodmap == null ? 0 : lowFodmap ? 1 : 2));
+        if (aggregateLikes == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(aggregateLikes);
+        }
+        if (spoonacularScore == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(spoonacularScore);
+        }
+        if (healthScore == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(healthScore);
+        }
+        dest.writeString(creditsText);
+        dest.writeString(license);
+        dest.writeString(sourceName);
+        if (pricePerServing == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(pricePerServing);
+        }
+        dest.writeTypedList(extendedIngredients);
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(id);
+        }
+        dest.writeString(title);
+        if (readyInMinutes == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(readyInMinutes);
+        }
+        if (servings == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(servings);
+        }
+        dest.writeString(sourceUrl);
+        dest.writeString(image);
+        dest.writeString(imageType);
+        dest.writeString(summary);
+        dest.writeStringList(diets);
+        dest.writeParcelable(winePairing, flags);
+        dest.writeString(instructions);
+        dest.writeTypedList(analyzedInstructions);
+        dest.writeString(spoonacularSourceUrl);
+    }
 }
